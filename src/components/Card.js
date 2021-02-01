@@ -13,6 +13,11 @@ const card = (props) => {
         icon = <BiSad className={styles.IconSize} />;
     }
 
+    let arrow = '';
+    if (props.BiCaretUp) {
+        arrow = <BiCaretUp />
+    }
+
     return (
         <Card body inverse color={props.color} className={"border-0 shadow rounded"}>
             <Row>
@@ -21,7 +26,7 @@ const card = (props) => {
                     <CardText tag="h2" className={"mb-0"}>{props.total}</CardText>
                     <CardText >
                         Orang <span className={"float-right"}>
-                            <BiCaretUp />{props.update}
+                            {arrow}{props.update}
                         </span>
                     </CardText>
                 </Col>

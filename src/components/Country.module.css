@@ -1,0 +1,23 @@
+.IconSize {
+    font-size: 40px;
+    padding: 0;
+    display: block;
+    margin: 0 0 10px 0;
+}
+
+.CardList {
+    max-height: 134px;
+    overflow-y: scroll;
+}
+
+
+@media (min-width: 767px) {
+    .IconSize {
+        font-size: 120px;
+    }
+
+    .CardList {
+        max-height: 240px;
+        overflow-y: scroll;
+    }
+}

@@ -1,0 +1,18 @@
+.FlagSize {
+    height: 16px;
+    width: 23px;
+    margin-right: 10px;
+}
+
+.Cases {
+    float: right;
+    padding-right: 10px;
+}
+
+.Number {
+    padding-right: 5px;
+}
+
+.CardClickable {
+    cursor: pointer;
+}
