@@ -4,3 +4,19 @@
     display: block;
     margin: 0 auto;
 }
+
+.ArrowUp {
+    animation: MoveUpDown 1s linear infinite;
+    position: absolute;
+    left: auto;
+    bottom: 0;
+}
+
+@keyframes MoveUpDown {
+    0%, 100% {
+      bottom: 0;
+    }
+    50% {
+      bottom: 8px;
+    }
+  }

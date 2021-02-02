@@ -6,16 +6,23 @@ import CountryFlag from './CountryFlag';
 const country = (props) => {
   let icon = <SiWorldhealthorganization className={styles.IconSize} />;
 
+  if (props.flag) {
+    icon = <img
+      className={styles.FlagSize}
+      src={props.flag}
+      alt={props.country} />
+  }
+
   return (
     <Container className="themed-container" fluid="md">
       <Row>
         <Col>
           <Card body style={{ height: '280px', overflow: 'hidden' }} className={"border-0 shadow-sm rounded mb-3"}>
             <Row>
-              <Col md="4">
+              <Col md="4" className={styles.CardAlign}>
                 {icon}
-                <CardTitle tag="h5" className={"mb-1"}>Nama negara</CardTitle>
-                <CardText className={"mb-1"}>Populasi:</CardText>
+                <CardTitle tag="h5" className={"mb-1"}>{props.country}</CardTitle>
+                <CardText className={"mb-1"}>Populasi: {props.specificData?.toLocaleString()}</CardText>
               </Col>
               <Col>
                 <Row className={styles.CardList}>
@@ -25,7 +32,9 @@ const country = (props) => {
                       num={id}
                       flag={item.countryInfo.flag}
                       name={item.countryInfo.iso3}
-                      cases={item.cases} />;
+                      cases={item.cases}
+                      country={item.country}
+                      clicked={props.clicked} />;
                   })}
                 </Row>
               </Col>

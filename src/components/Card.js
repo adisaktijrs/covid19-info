@@ -15,7 +15,7 @@ const card = (props) => {
 
     let arrow = '';
     if (props.BiCaretUp) {
-        arrow = <BiCaretUp />
+        arrow = <BiCaretUp className={styles.ArrowUp} />
     }
 
     return (
@@ -26,7 +26,7 @@ const card = (props) => {
                     <CardText tag="h2" className={"mb-0"}>{props.total}</CardText>
                     <CardText >
                         Orang <span className={"float-right"}>
-                            {arrow}{props.update}
+                            {props.update}{arrow}
                         </span>
                     </CardText>
                 </Col>
