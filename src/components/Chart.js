@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Card, CardTitle, CardText } from 'reactstrap';
+import { Card, CardTitle } from 'reactstrap';
 import ApexChart from 'react-apexcharts';
 
 class Chart extends Component {
