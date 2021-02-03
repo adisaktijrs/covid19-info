@@ -1,91 +1,100 @@
-import { Component } from 'react';
 import { Card, CardTitle } from 'reactstrap';
 import ApexChart from 'react-apexcharts';
 
-class Chart extends Component {
-    state = {
-        options: {
-            chart: {
-                id: "area",
-                toolbar: {
-                    show: false
-                }
-            },
-            colors: ['#F44336'],
-            xaxis: {
-                show: false,
-                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-                labels: {
-                    show: false
-                }
-            },
-            yaxis: {
-                show: false,
-                labels: {
-                    show: false,
-                    
-                },
-                
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            grid: {
-                padding: {
-                    left: 0,
-                    right: 0
-                }
-            },
-            fill: {
-                colors: ['#F44336'],
-                type: "gradient",
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.8,
-                    opacityTo: 0.9,
-                    stops: [0, 90, 100]
-                }
-            },
-            stroke: {
-                show: true,
-                curve: 'smooth',
-                lineCap: 'round',
-                colors: ['#F44336'],
-                width: 4,
-                dashArray: 0,      
-            },
-            markers: {
-                colors: ['#F44336'],
-            },
-            tooltip: {
-                enabled: true,
-                fillSeriesColor: false,
-                
+const chart = (props) => {
+
+    let categories, data = [0];
+    if (props.data) {
+        categories = Object.keys(props.data);
+        data = Object.values(props.data);
+    }
+
+    const colors = props.type === 'cases' ? ['#F44336'] : props.type === 'recovered' ? ['#5cb85c'] : ['#6c757d'];
+
+    const series = [{
+        name: 'Cases',
+        data: data
+    }];
+
+    const options = {
+        chart: {
+            id: "area",
+            toolbar: {
+                show: false
             }
+        },
+        colors: colors,
+        xaxis: {
+            show: false,
+            categories: categories,
+            labels: {
+                show: false
+            }
+        },
+        yaxis: {
+            show: false,
+            labels: {
+                show: false,
+
+            },
 
         },
-        
-        series: [
-            {
-                name: "Kasus",
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
+        dataLabels: {
+            enabled: false,
+        },
+        grid: {
+            padding: {
+                left: 0,
+                right: 0
             }
-        ]
-    };
+        },
+        fill: {
+            colors: colors,
+            type: "gradient",
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.8,
+                opacityTo: 0.9,
+                stops: [0, 90, 100]
+            }
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'round',
+            colors: colors,
+            width: 4,
+            dashArray: 0,
+        },
+        markers: {
+            colors: colors,
+        },
+        tooltip: {
+            enabled: true,
+            fillSeriesColor: false,
+            y: {
+                formatter: function (value) {
+                    return value.toLocaleString()
+                },
+                title: {
+                    formatter: (seriesName) => seriesName,
+                },
+            },
 
-    render() {
-        return (
-            <Card body className={"border-0 shadow-sm rounded mb-3 pb-0"}>
-                <CardTitle tag="h6" className={"mb-0"}>Akumulasi Kasus</CardTitle>
-                <ApexChart
-                    options={this.state.options}
-                    series={this.state.series}
-                    type="area"
-                    width="100%"
-                />
-            </Card>
-        );
+        }
     }
+    
+    return(
+        <Card body className = { "border-0 shadow-sm rounded mb-3 pb-0"} >
+            <CardTitle tag="h6" className={"mb-0 text-center"}>{props.title}</CardTitle>
+            <ApexChart
+                options={options}
+                series={series}
+                type="area"
+                width="100%"
+            />
+        </Card>
+    )
 }
 
-export default Chart;
+export default chart;
