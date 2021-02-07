@@ -1,5 +1,5 @@
 import { Row, Col, Container } from 'reactstrap';
-import Card from './Card';
+import Card from '../Card/Card';
 
 const main = (props) => {
 

@@ -1,17 +1,19 @@
-import { Component } from 'react';
-import Header from './Header';
-import Main from './Main';
+import { Component, Fragment } from 'react';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
 import axios from 'axios';
-import Country from './Country';
-import ChartArea from './ChartArea';
-import Footer from './Footer';
+import Country from '../Country/Country';
+import ChartArea from '../Chart/ChartArea';
+import Footer from '../Footer/Footer';
+import Loader from '../Loader/Loader';
 
 class Layout extends Component {
     state = {
         data: [],
         countries: [],
         selectedCountry: null,
-        historical: []
+        historical: [],
+        loading: true
     }
 
     componentDidMount() {
@@ -39,7 +41,7 @@ class Layout extends Component {
         axios.get('https://disease.sh/v3/covid-19/historical/all')
             .then(response => {
                 // const [a, b] = [Object.keys(response.data.cases), Object.values(response.data.cases)];
-                this.setState({ historical: response.data });
+                this.setState({ historical: response.data, loading: false });
             })
             .catch(error => {
                 console.log(error);
@@ -70,9 +72,9 @@ class Layout extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <Header />
+        let process = <Loader />
+        if (!this.state.loading) {
+            process = <Fragment>
                 <Country
                     data={this.state.countries}
                     specificData={this.state.data.population}
@@ -93,7 +95,12 @@ class Layout extends Component {
                     data={this.state.historical}
                     ratio={this.state.data} />
                 <Footer />
-
+            </Fragment>
+        }
+        return (
+            <div>
+                <Header />
+                {process}
             </div>
         )
     }
