@@ -1,3 +1,7 @@
+# Covid-19 Info React App
+
+This is my first React project that I build (without following any tutorial videos). I know, my code was messy lol. Anyway, I use Reactrap, Apexcharts.js, and [disease.sh API](https://disease.sh/) on this project.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
